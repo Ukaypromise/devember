@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
-import DayListItem from './src/components/core/DayListItem';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { AmaticSC_700Bold, AmaticSC_400Regular } from '@expo-google-fonts/amatic-sc';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import DayListItem from "../../src/components/core/DayListItem";
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import {
+  AmaticSC_700Bold,
+  AmaticSC_400Regular,
+} from "@expo-google-fonts/amatic-sc";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-
-const days = [...Array(24)].map((val, index) => index + 1)
+const days = [...Array(24)].map((val, index) => index + 1);
 // const days = [...Array(24).keys()].map(index => index + 1);
 
-export default function App() {
-
+export default function HomeScreen() {
   const [fontsLoaded, fontError] = useFonts({
     Inter: Inter_900Black,
     Amatic: AmaticSC_400Regular,
@@ -23,25 +30,22 @@ export default function App() {
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync()
+      SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError])
+  }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) {
-    return null
+    return null;
   }
 
   return (
     <View style={styles.container}>
-
       <FlatList
         data={days}
         contentContainerStyle={styles.content}
         columnWrapperStyle={styles.column}
         numColumns={2}
-        renderItem={({ item }) => (
-          <DayListItem day={item} />
-        )}
+        renderItem={({ item }) => <DayListItem day={item} />}
       />
       <StatusBar style="auto" />
     </View>
@@ -51,8 +55,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-
+    backgroundColor: "#fff",
   },
 
   content: {
