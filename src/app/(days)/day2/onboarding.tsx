@@ -85,12 +85,12 @@ export default function OnBoardingScreen() {
                 ))}
             </View>
             <GestureDetector gesture={swipes}>
-                <View style={styles.pageContent}>
-                    <Animated.View entering={FadeIn} exiting={FadeOut}>
+                <View style={styles.pageContent} key={screenIndex}>
+                    <Animated.View entering={FadeIn} exiting={FadeOut} >
                         <FontAwesome5
                             style={styles.image}
                             name={data.icon}
-                            size={100}
+                            size={150}
                             color="#CEF202"
                         />
                     </Animated.View>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     image: {
         alignSelf: "center",
         margin: 20,
-        marginTop: 50,
+        marginTop: 70,
     },
     title: {
         color: "#FDFDFD",
